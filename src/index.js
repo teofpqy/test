@@ -1,5 +1,5 @@
 import ReactDOM from 'react-dom';
 import React from 'React';
-import Hello from './Hello';
+import List from './list';
 
-ReactDOM.render(<Hello name="teof" />, document.getElementById('root'));
+ReactDOM.render(<List />, document.getElementById('root'));
