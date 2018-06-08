@@ -1,17 +1,32 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Document</title>
-    
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+
 </head>
+
 <body>
-    <div id="root">
+  <div id="root">
 
-    </div>
+  </div>
 </body>
-  <script type="text/javascript" src="src/index.js"></script>
-</html>
+<script>
+  if ('serviceWorker' in navigator) {
+    console.log('support serviceworker');
+    navigator.serviceWorker.register('./src/serviceworker/index.js')
+      .then((registration) => {
+        console.log('ServiceWorker registration successful with scope: ', registration.scope)
+      }).catch((error) => {
+        console.error('ServiceWorker registration failed: ', error);
+      })
+  } else {
+    console.log('not support serviceworker')
+  }
+</script>
+<script type="text/javascript" src="src/index.js"></script>
 
+</html>

@@ -1,5 +1,13 @@
 import React, { Component } from 'react';
 import { getLibs } from './actions';
+import {
+  Paper,
+  Table,
+  TableHead,
+  TableBody,
+  TableRow,
+  TableCell,
+} from '@material-ui/core';
 
 class LibList extends Component {
   constructor(props) {
@@ -8,20 +16,46 @@ class LibList extends Component {
       libs: [],
     };
   }
-  
+
   componentWillMount() {
-    getLibs().then((libs) => this.setState({ libs }));
+    getLibs().then((libs) =>
+      this.setState({ libs }));
+  }
+
+  _renderHeader() {
+    return <TableHead>
+      <TableRow>
+          <TableCell>
+            Library name
+          </TableCell>
+          <TableCell>
+            Description
+          </TableCell>
+          <TableCell>
+            Stars
+          </TableCell>
+        </TableRow>
+      </TableHead>
   }
 
   render() {
-  const { libs } = this.state;
-  return <ul>
-      {
-        libs.map((lib) => <li>{lib[0]}</li>)
-      }
-      </ul>
-  }
+    const { libs } = this.state;
 
+    return <Paper>
+      <Table>
+        {this._renderHeader()}
+        <TableBody>
+          {
+            libs.map((lib) =><TableRow>
+                <TableCell>{lib.name}</TableCell>
+                <TableCell>{lib.description}</TableCell>
+                <TableCell>{lib.stars}</TableCell>
+              </TableRow>)
+          }
+        </TableBody>
+      </Table>
+      </Paper>
+  }
 }
 
 export default LibList;

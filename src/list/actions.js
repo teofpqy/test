@@ -1,10 +1,19 @@
-import axios from 'axios';
+import { fetch, buildUrl } from 'domain/Api';
 
-export async function getLibs() {
-  const response =  await axios.get('https://api.bootcdn.cn/libraries.min.json');
-  return response.data;
+export function getLibs() {
+  const url = buildUrl('/libraries.min.json');
+  const options = {
+    method: 'GET',
+  }
+  return fetch(url, options)
+    .then((res) => formattResult(res));
 }
 
-function formattResult(libs) {
-  return 
+
+function formattResult(response = []) {
+  return response.map((lib) => ({
+    name: lib[0],
+    description: lib[1],
+    stars: lib[2]
+  }));
 }

@@ -1,6 +1,2 @@
-const request = indexedDB.open('bootCDN');
-
-request.onupgradeneeded = () => {
-  const db = request.result;
-  const store = db.createObjectStore("libraries", { keypath: 'libraryName'})
-}
+import * as _DB from './DB';
+export const DB = _DB;
